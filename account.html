@@ -1,0 +1,286 @@
+<!-- account.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R&G Makhana - Account</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      nav {
+        background: rgba(44, 62, 80, 0.9);
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        width: 100px;
+        height: 40px;
+        background: url("https://4.imimg.com/data4/PX/AY/GLADMIN-14790035/3-120x120.png")
+          no-repeat center;
+        background-size: contain;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .account {
+        padding: 4rem 2rem;
+        max-width: 600px;
+        margin: 60px auto;
+      }
+
+      .account form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .account input,
+      .account textarea {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        margin: 20%;
+      }
+
+      .account textarea {
+        height: 100px;
+      }
+
+      .btn {
+        margin: 10%;
+        padding: 0.5rem 1rem;
+        background: #2c3e50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #34495e;
+      }
+      /* Previous styles remain same plus: */
+      .auth-container {
+        padding: 4rem 2rem;
+        max-width: 400px;
+        margin: 60px auto;
+      }
+
+      .auth-toggle {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        justify-content: center;
+      }
+
+      .form-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-container {
+        display: none;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-details {
+        margin-top: 1rem;
+      }
+
+      .logout-btn {
+        margin-top: 1rem;
+        background: #dc3545;
+      }
+      footer {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("businesscard.jpeg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 5%;
+        height: 200px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-content">
+        <div class="logo"></div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="account.html">Account</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="auth-container">
+      <div id="auth-forms">
+        <div class="auth-toggle">
+          <button class="btn" onclick="showLogin()">Login</button>
+          <button class="btn" onclick="showRegister()">Register</button>
+        </div>
+
+        <div class="form-container">
+          <form id="login-form" style="display: none">
+            <input type="tel" placeholder="Phone Number" required />
+            <input type="password" placeholder="Password" required />
+            <button type="submit" class="btn">Login</button>
+          </form>
+
+          <form id="register-form">
+            <input type="text" placeholder="Full Name" required />
+            <input type="tel" placeholder="Phone Number" required />
+            <input type="email" placeholder="Email" required />
+            <input type="text" placeholder="PIN Code" required />
+            <textarea placeholder="Address" required></textarea>
+            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Confirm Password" required />
+            <button type="submit" class="btn">Register</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="profile-view" class="profile-container">
+        <h2>Profile Details</h2>
+        <div class="profile-details">
+          <p><strong>Name:</strong> <span id="profile-name"></span></p>
+          <p><strong>Phone:</strong> <span id="profile-phone"></span></p>
+          <p><strong>Email:</strong> <span id="profile-email"></span></p>
+          <p><strong>Address:</strong> <span id="profile-address"></span></p>
+        </div>
+        <button class="btn logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 R&G Makhana. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function showLogin() {
+        document.getElementById("login-form").style.display = "grid";
+        document.getElementById("register-form").style.display = "none";
+      }
+
+      function showRegister() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("register-form").style.display = "grid";
+      }
+
+      function logout() {
+        localStorage.removeItem("currentUser");
+        window.location.reload();
+      }
+
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const formData = {
+            name: this.elements[0].value,
+            phone: this.elements[1].value,
+            email: this.elements[2].value,
+            pincode: this.elements[3].value,
+            address: this.elements[4].value,
+            password: this.elements[5].value,
+            confirmPassword: this.elements[6].value,
+          };
+
+          if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+          }
+
+          localStorage.setItem(
+            "user_" + formData.phone,
+            JSON.stringify(formData)
+          );
+          localStorage.setItem("currentUser", formData.phone);
+          window.location.reload();
+        });
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const phone = this.elements[0].value;
+          const password = this.elements[1].value;
+
+          const user = localStorage.getItem("user_" + phone);
+          if (!user) {
+            alert("User not found!");
+            return;
+          }
+
+          const userData = JSON.parse(user);
+          if (userData.password !== password) {
+            alert("Invalid password!");
+            return;
+          }
+
+          localStorage.setItem("currentUser", phone);
+          window.location.reload();
+        });
+
+      function checkLoginStatus() {
+        const currentUser = localStorage.getItem("currentUser");
+        if (currentUser) {
+          const userData = JSON.parse(
+            localStorage.getItem("user_" + currentUser)
+          );
+          document.getElementById("auth-forms").style.display = "none";
+          document.getElementById("profile-view").style.display = "block";
+
+          document.getElementById("profile-name").textContent = userData.name;
+          document.getElementById("profile-phone").textContent = userData.phone;
+          document.getElementById("profile-email").textContent = userData.email;
+          document.getElementById("profile-address").textContent =
+            userData.address;
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        checkLoginStatus();
+      });
+    </script>
+  </body>
+</html>

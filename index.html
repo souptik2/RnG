@@ -1,0 +1,135 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R&G Makhana - Home</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      nav {
+        background: rgba(44, 62, 80, 0.9);
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        width: 20%;
+        height: 40px;
+        background: url("/rndlogo.png") no-repeat center;
+        background-size: contain;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .hero {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url("https://www.mbamakhanawala.com/wp-content/uploads/2023/03/makhana-banner-e1680071127184-1-1080x537.png");
+        height: 80vh;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        margin-top: 60px;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .about {
+        height: 60vh;
+        padding: 4rem 2rem;
+        background: #f9f9f9;
+      }
+
+      .about h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      footer {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("businesscard.jpeg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 5%;
+        height: 200px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-content">
+        <div class="logo"></div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="account.html">Account</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Kolkata's Finest Makhana</h1>
+        <p>Premium quality fox nuts from the heart of Bengal</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About Us</h2>
+      <h3>Group of organic Makhana producer.</h3>
+      <p>
+        Based in the cultural capital of India, Kolkata, we bring you the finest
+        quality makhana (fox nuts). Our products are carefully sourced from
+        traditional farmers and processed using modern techniques to ensure the
+        highest quality and taste.
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 R&G Makhana. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
